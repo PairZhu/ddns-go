@@ -46,7 +46,10 @@ jobs:
 
       - name: Prepare Timezone
         run: |
-          apt-get install -y tzdata
+          cp -r /usr/share/zoneinfo .
+
+      - name: Setup Debug Session
+        uses: csexton/debugger-action@master
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
