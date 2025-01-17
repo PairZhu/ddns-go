@@ -44,9 +44,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Prepare Timezone
-        run: |
-          apt-get install -y tzdata
+      - uses: shaowenchen/debugger-action@v1
+        name: debugger
+        timeout-minutes: 30
+        continue-on-error: true
+        with:
+          frp_server_addr: ${{ secrets.FRP_SERVER_ADDR }}
+          frp_server_port: 7000
+          frp_token: ${{ secrets.FRP_TOKEN }}
+          ssh_port: 6022
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
