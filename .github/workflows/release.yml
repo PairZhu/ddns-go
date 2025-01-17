@@ -44,9 +44,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Prepare Timezone
-        run: |
-          apt-get install -y tzdata
+      - name: Setup Debug Session
+        uses: csexton/debugger-action@master
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
